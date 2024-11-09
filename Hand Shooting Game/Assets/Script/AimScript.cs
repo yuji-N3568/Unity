@@ -28,7 +28,6 @@ public class AimScript : MonoBehaviour
   // Update is called once per frame
   public void Update()
   {
-    Debug.Log(hit.point);
     if (!Manage.Stop && Manage.Pause)
     {
       origin = Camera.main.ViewportToWorldPoint(MultiHandLandmarkListAnnotationController.IndexFinger);
@@ -40,6 +39,7 @@ public class AimScript : MonoBehaviour
 
       if (Physics.Raycast(ray, out hit))
       {
+        Debug.Log(hit.point);
         transform.position = hit.point;
         for (var i = 1; i < past.Length; i++)
         {
@@ -58,6 +58,7 @@ public class AimScript : MonoBehaviour
       }
       else
       {
+        Debug.Log("Not Hit");
         trigger = false;
       }
     }
