@@ -10,6 +10,7 @@ public class Manage : MonoBehaviour
 
   public static bool Pause = true;
   public static bool Stop = false;
+  public static bool Finishnow = false;
   public static int score;
   public static float time;
   [SerializeField] GameObject Header;
@@ -22,10 +23,10 @@ public class Manage : MonoBehaviour
   private void Start()
   {
     score = 0;
-    time = 30.0f;
+    time = 0.0f;
     Pause = true;
     Stop = false;
-    FinishMenu.finishmenu = true;
+    Finishnow = false;
     FeedIn._feedin = false;
     Feedin.SetActive(false);
     Modal.SetActive(false);
@@ -63,9 +64,10 @@ public class Manage : MonoBehaviour
     }
     else
     {
+      Finishnow = true;
       Header.SetActive(!Stop);
       Footer.SetActive(!Stop);
-      Finish.SetActive(FinishMenu.finishmenu);
+      Finish.SetActive(!Modal.activeSelf);
     }
     Feedin.SetActive(Retry._retry);
   }

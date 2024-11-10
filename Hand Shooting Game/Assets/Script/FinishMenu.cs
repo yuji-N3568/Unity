@@ -3,16 +3,22 @@ using UnityEngine.UI;
 
 public class FinishMenu : MonoBehaviour
 {
-  public Button myButton;
-  public static bool finishmenu;
+  private CanvasGroup canvasGroup;
+  [SerializeField] GameObject finish;
 
   void Start()
   {
-    myButton.onClick.AddListener(FinishConfig);
+    canvasGroup = GetComponent<CanvasGroup>();
+
+    if (canvasGroup == null)
+    {
+      Debug.LogWarning("CanvasGroup が設定されていません");
+    }
   }
 
-  public void FinishConfig()
+  // Canvasの表示・非表示を切り替えるメソッド
+  public void ToggleCanvasVisibility()
   {
-    finishmenu = !finishmenu;
+    finish.SetActive(false);
   }
 }
