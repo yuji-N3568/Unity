@@ -28,6 +28,7 @@ public class Manage : MonoBehaviour
     FinishMenu.finishmenu = true;
     FeedIn._feedin = false;
     Feedin.SetActive(false);
+    Modal.SetActive(false);
   }
 
   // Update is called once per frame
@@ -35,26 +36,28 @@ public class Manage : MonoBehaviour
   {
     if (!Stop)
     {
-      if (Input.GetKeyUp(KeyCode.Escape))
+      if (CountDown.CountFinish)
       {
-        Header.SetActive(Pause);
-        Footer.SetActive(Pause);
-        Modal.SetActive(false);
-        //Aim.SetActive(!Pause);
-        Pause = !Pause;
-      }
-      else if (Pause && CountDown.CountFinish)
-      {
-        if (time > 0)
+        if (Input.GetKeyUp(KeyCode.Escape))
         {
-          time -= Time.deltaTime;
-          GetComponent<TextMeshProUGUI>().text = "Time:" + time.ToString("F2") + "    Score:" + score.ToString("D2");
+          Header.SetActive(Pause);
+          Footer.SetActive(Pause);
+          //Aim.SetActive(!Pause);
+          Pause = !Pause;
         }
-        else
+        else if (Pause)
         {
-          time = 0;
-          GetComponent<TextMeshProUGUI>().text = "Time:00.00" + "    Score:" + score.ToString("D2");
-          Stop = true;
+          if (time > 0)
+          {
+            time -= Time.deltaTime;
+            GetComponent<TextMeshProUGUI>().text = "Time:" + time.ToString("F2") + "    Score:" + score.ToString("D2");
+          }
+          else
+          {
+            time = 0;
+            GetComponent<TextMeshProUGUI>().text = "Time:00.00" + "    Score:" + score.ToString("D2");
+            Stop = true;
+          }
         }
       }
     }

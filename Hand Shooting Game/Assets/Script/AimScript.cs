@@ -28,8 +28,7 @@ public class AimScript : MonoBehaviour
   // Update is called once per frame
   public void Update()
   {
-    Debug.Log(transform.position);
-    if (!Manage.Stop && Manage.Pause)
+    if (!Manage.Stop && Manage.Pause || CountDown.Count > 0)
     {
       origin = Camera.main.ViewportToWorldPoint(MultiHandLandmarkListAnnotationController.IndexFinger);
       rayorigin = new Vector3(origin.x, origin.y, -10);
@@ -40,8 +39,9 @@ public class AimScript : MonoBehaviour
 
       if (Physics.Raycast(ray, out hit))
       {
+        Debug.Log(hit.point);
         transform.position = hit.point;
-        for (int i = 1; i < past.Length; i++)
+        for (var i = 1; i < past.Length; i++)
         {
           past[i] = past[i - 1];
         }
@@ -58,6 +58,7 @@ public class AimScript : MonoBehaviour
       }
       else
       {
+        Debug.Log("Not Hit");
         trigger = false;
       }
     }

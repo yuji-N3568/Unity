@@ -19,6 +19,7 @@ namespace Mediapipe.Unity.Sample.UI
     {
       if (_contents != null)
       {
+        _contents.SetActive(true);
         modal.Open(_contents);
       }
     }
@@ -27,6 +28,7 @@ namespace Mediapipe.Unity.Sample.UI
     {
       if (_contents != null)
       {
+        _contents.SetActive(true);
         modal.OpenAndPause(_contents);
       }
     }
