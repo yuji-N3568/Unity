@@ -28,7 +28,7 @@ public class AimScript : MonoBehaviour
   // Update is called once per frame
   public void Update()
   {
-    if (!Manage.Stop && Manage.Pause)
+    if (!Manage.Stop && Manage.Pause || CountDown.Count > 0)
     {
       origin = Camera.main.ViewportToWorldPoint(MultiHandLandmarkListAnnotationController.IndexFinger);
       rayorigin = new Vector3(origin.x, origin.y, -10);

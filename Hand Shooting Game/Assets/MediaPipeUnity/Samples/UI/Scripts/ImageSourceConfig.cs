@@ -40,35 +40,8 @@ namespace Mediapipe.Unity.Sample.UI
 
     private void InitializeContents()
     {
-      InitializeSourceType();
       InitializeSource();
       InitializeResolution();
-      InitializeIsHorizontallyFlipped();
-    }
-
-    private void InitializeSourceType()
-    {
-      _sourceTypeInput = gameObject.transform.Find(_SourceTypePath).gameObject.GetComponent<Dropdown>();
-      _sourceTypeInput.ClearOptions();
-      _sourceTypeInput.onValueChanged.RemoveAllListeners();
-
-      var options = Enum.GetNames(typeof(ImageSourceType)).Where(x => x != ImageSourceType.Unknown.ToString()).ToList();
-      _sourceTypeInput.AddOptions(options);
-
-      var currentSourceType = ImageSourceProvider.CurrentSourceType;
-      var defaultValue = options.FindIndex(option => option == currentSourceType.ToString());
-
-      if (defaultValue >= 0)
-      {
-        _sourceTypeInput.value = defaultValue;
-      }
-
-      _sourceTypeInput.onValueChanged.AddListener(delegate
-      {
-        ImageSourceProvider.Switch((ImageSourceType)_sourceTypeInput.value);
-        _isChanged = true;
-        InitializeContents();
-      });
     }
 
     private void InitializeSource()
@@ -138,17 +111,5 @@ namespace Mediapipe.Unity.Sample.UI
       });
     }
 
-    private void InitializeIsHorizontallyFlipped()
-    {
-      _isHorizontallyFlippedInput = gameObject.transform.Find(_IsHorizontallyFlippedPath).gameObject.GetComponent<Toggle>();
-
-      var imageSource = ImageSourceProvider.ImageSource;
-      _isHorizontallyFlippedInput.isOn = imageSource.isHorizontallyFlipped;
-      _isHorizontallyFlippedInput.onValueChanged.AddListener(delegate
-      {
-        imageSource.isHorizontallyFlipped = _isHorizontallyFlippedInput.isOn;
-        _isChanged = true;
-      });
-    }
   }
 }
