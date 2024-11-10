@@ -178,6 +178,10 @@ MonoBehaviour:
   Finish: {fileID: 690046780}
   Modal: {fileID: 705621527}
   Feedin: {fileID: 1453474556}
+  RetryMenu: {fileID: 6134773167894791910, guid: c11d1e65e08886c308c31ea8d84e4ee6,
+    type: 3}
+  TitleMenu: {fileID: 6134773167894791910, guid: 7ab5348e17a6f7c4fb7c9a182f2c487a,
+    type: 3}
 --- !u!114 &145605134
 MonoBehaviour:
   m_ObjectHideFlags: 0
