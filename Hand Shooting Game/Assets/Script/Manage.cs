@@ -13,6 +13,7 @@ public class Manage : MonoBehaviour
   public static bool Finishnow = false;
   public static int score;
   public static float time;
+  public AudioSource audioSource;
   [SerializeField] GameObject Header;
   [SerializeField] GameObject Footer;
   [SerializeField] GameObject Aim;
@@ -23,13 +24,14 @@ public class Manage : MonoBehaviour
   private void Start()
   {
     score = 0;
-    time = 0.0f;
+    time = 30.0f;
     Pause = true;
     Stop = false;
     Finishnow = false;
     FeedIn._feedin = false;
     Feedin.SetActive(false);
     Modal.SetActive(false);
+    audioSource.Stop(); 
   }
 
   // Update is called once per frame
@@ -41,6 +43,7 @@ public class Manage : MonoBehaviour
       {
         if (Input.GetKeyUp(KeyCode.Escape))
         {
+          audioSource.Pause();
           Header.SetActive(Pause);
           Footer.SetActive(Pause);
           //Aim.SetActive(!Pause);
@@ -50,6 +53,10 @@ public class Manage : MonoBehaviour
         {
           if (time > 0)
           {
+            if (!audioSource.isPlaying)
+            {
+              audioSource.Play();
+            }
             time -= Time.deltaTime;
             GetComponent<TextMeshProUGUI>().text = "Time:" + time.ToString("F2") + "    Score:" + score.ToString("D2");
           }
@@ -67,6 +74,7 @@ public class Manage : MonoBehaviour
       Finishnow = true;
       Header.SetActive(!Stop);
       Footer.SetActive(!Stop);
+      audioSource.Stop();
       Finish.SetActive(!Modal.activeSelf);
     }
     Feedin.SetActive(Retry._retry);
