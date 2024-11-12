@@ -13,7 +13,7 @@ public class AimScript : MonoBehaviour
   private Ray ray;
   private RaycastHit hit;
   private bool shot = false;
-  private AudioSource audiosource;
+  public AudioSource audiosource;
   private Vector3[] past = new Vector3[4];
   public static bool trigger = false;
   public static Vector3 AimPos = Vector3.zero;

@@ -13,7 +13,12 @@ public class Manage : MonoBehaviour
   public static bool Finishnow = false;
   public static int score;
   public static float time;
-  public AudioSource audioSource;
+  public AudioSource bgmSource;
+  public AudioSource seSource;
+  public AudioSource clickSE;
+  public AudioSource balloonSE;
+  private bool pastmodal;
+  private int pastscore;
   [SerializeField] GameObject Header;
   [SerializeField] GameObject Footer;
   [SerializeField] GameObject Aim;
@@ -31,7 +36,9 @@ public class Manage : MonoBehaviour
     FeedIn._feedin = false;
     Feedin.SetActive(false);
     Modal.SetActive(false);
-    audioSource.Stop(); 
+    bgmSource.Stop(); 
+    pastmodal = false;
+    pastscore = 0;
   }
 
   // Update is called once per frame
@@ -41,9 +48,10 @@ public class Manage : MonoBehaviour
     {
       if (CountDown.CountFinish)
       {
-        if (Input.GetKeyUp(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
-          audioSource.Pause();
+          bgmSource.Pause();
+          seSource.Play();
           Header.SetActive(Pause);
           Footer.SetActive(Pause);
           //Aim.SetActive(!Pause);
@@ -53,12 +61,18 @@ public class Manage : MonoBehaviour
         {
           if (time > 0)
           {
-            if (!audioSource.isPlaying)
+            if (!bgmSource.isPlaying)
             {
-              audioSource.Play();
+              bgmSource.Play();
             }
             time -= Time.deltaTime;
             GetComponent<TextMeshProUGUI>().text = "Time:" + time.ToString("F2") + "    Score:" + score.ToString("D2");
+            if(pastscore != score)
+            {
+              pastscore = score;
+              balloonSE.Play();
+
+            }
           }
           else
           {
@@ -74,9 +88,14 @@ public class Manage : MonoBehaviour
       Finishnow = true;
       Header.SetActive(!Stop);
       Footer.SetActive(!Stop);
-      audioSource.Stop();
+      bgmSource.Stop();
       Finish.SetActive(!Modal.activeSelf);
     }
     Feedin.SetActive(Retry._retry);
+    if (Modal.activeSelf != pastmodal && !Input.GetKey(KeyCode.Escape))
+    {
+      clickSE.Play();
+    }
+    pastmodal = Modal.activeSelf;
   }
 }

@@ -10,7 +10,6 @@ public class Target : MonoBehaviour
   private float speed = 0.4f;
   private Vector3 TargetPos;
   private Vector2 distance;
-  private AudioSource audiosource;
 
   void Start()
   {
@@ -31,7 +30,6 @@ public class Target : MonoBehaviour
           distance.y = TargetPos.y - AimScript.AimPos.y + 64.5f;
           if (Mathf.Sqrt(distance.x * distance.x + distance.y * distance.y) < 15)
           {
-            audiosource.Play();
             Manage.score += 1;
             Destroy(gameObject);
           }
