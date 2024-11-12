@@ -17,6 +17,7 @@ public class Manage : MonoBehaviour
   public AudioSource seSource;
   public AudioSource clickSE;
   public AudioSource balloonSE;
+  public AudioSource FinishSE;
   private bool pastmodal;
   private int pastscore;
   [SerializeField] GameObject Header;
@@ -78,6 +79,7 @@ public class Manage : MonoBehaviour
           {
             time = 0;
             GetComponent<TextMeshProUGUI>().text = "Time:00.00" + "    Score:" + score.ToString("D2");
+            FinishSE.Play();
             Stop = true;
           }
         }
