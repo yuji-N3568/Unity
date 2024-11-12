@@ -14,16 +14,12 @@ namespace Mediapipe.Unity.Sample.UI
 {
   public class ImageSourceConfig : ModalContents
   {
-    private const string _SourceTypePath = "Scroll View/Viewport/Contents/SourceType/Dropdown";
     private const string _SourcePath = "Scroll View/Viewport/Contents/Source/Dropdown";
     private const string _ResolutionPath = "Scroll View/Viewport/Contents/Resolution/Dropdown";
-    private const string _IsHorizontallyFlippedPath = "Scroll View/Viewport/Contents/IsHorizontallyFlipped/Toggle";
 
     private Solution _solution;
-    private Dropdown _sourceTypeInput;
     private Dropdown _sourceInput;
     private Dropdown _resolutionInput;
-    private Toggle _isHorizontallyFlippedInput;
 
     private bool _isChanged;
 

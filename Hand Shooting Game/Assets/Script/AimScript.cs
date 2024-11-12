@@ -13,6 +13,7 @@ public class AimScript : MonoBehaviour
   private Ray ray;
   private RaycastHit hit;
   private bool shot = false;
+  public AudioSource audiosource;
   private Vector3[] past = new Vector3[4];
   public static bool trigger = false;
   public static Vector3 AimPos = Vector3.zero;
@@ -51,6 +52,7 @@ public class AimScript : MonoBehaviour
       }
       else if (shot)
       {
+        audiosource.Play();
         transform.position = past[^1];
         AimPos = transform.position;
         trigger = true;
@@ -58,7 +60,6 @@ public class AimScript : MonoBehaviour
       }
       else
       {
-        Debug.Log("Not Hit");
         trigger = false;
       }
     }

@@ -35,7 +35,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/MediaPipeUnity/Samples/Scenes/MediaPipe Video/MediaPipe Video.unity
     guid: 16062faf4cda54140b781b925351b119
-  - enabled: 0
+  - enabled: 1
     path: Assets/Title.unity
     guid: 188bf2fae1f1c9d4c9e95e395b646683
   - enabled: 1
