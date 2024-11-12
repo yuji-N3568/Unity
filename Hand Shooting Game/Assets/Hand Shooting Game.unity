@@ -1198,9 +1198,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 410306950}
-        m_TargetAssemblyTypeName: SceneChanger, Assembly-CSharp
-        m_MethodName: OnButtonClick
+      - m_Target: {fileID: 321390214}
+        m_TargetAssemblyTypeName: Mediapipe.Unity.Sample.UI.ModalButton, Mediapipe.Unity.Sample
+        m_MethodName: Open
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
