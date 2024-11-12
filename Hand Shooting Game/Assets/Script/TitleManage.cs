@@ -8,6 +8,11 @@ public class TitleManage : MonoBehaviour
   public Canvas titlemenu;
   public AudioSource clickSE;
   private bool pastactive=false;
+
+  void Start()
+  {
+    Screen.SetResolution(1280, 720, true);
+  }
   void Update()
   {
     if (!modal.activeSelf)
